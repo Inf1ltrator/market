@@ -23,4 +23,7 @@ ActiveRecord::Schema.define(version: 20150730145711) do
     t.string   "description"
   end
 
+  add_index "items", ["name"], name: "index_items_on_name"
+  add_index "items", ["price"], name: "index_items_on_price"
+
 end
