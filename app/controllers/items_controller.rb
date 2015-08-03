@@ -1,12 +1,15 @@
 class ItemsController < ApplicationController
 
+	before_filter :find_item,      only:[:show, :edit, :update, :destroy, :upvote]
+	before_filter :check_if_admin, only:[:edit, :update, :create, :new, :delete]
+
 	def index
 		@items = Item.all
 	end
 
 	# /items/id GET
 	def show
-		unless @item = Item.where(id: params[:id]).first
+		unless @item 
 			render text: "Page not found", status: 404
 		end
 	end
@@ -18,7 +21,11 @@ class ItemsController < ApplicationController
 
 	# /items/id/edit GET
 	def edit
-		@item = Item.find(params[:id])
+	end
+
+	def expensive
+		@items = Item.where("price > 1000")
+		render "index"
 	end
 
 	# /items POST
@@ -33,7 +40,6 @@ class ItemsController < ApplicationController
 
 	# /items/id PUT
 	def update
-		@item = Item.find(params[:id])
 		@item.update_attributes(item_params)
 		if @item.errors.empty?
 			redirect_to item_path(@item)
@@ -42,15 +48,30 @@ class ItemsController < ApplicationController
 		end
 	end
 
+	def upvote
+		@item.increment!(:votes_count)
+		redirect_to action: :index
+	end
+
 	# /items/id DELETE
 	def destroy
-		@item = Item.find(params[:id])
 		@item.destroy
 		redirect_to action: "index"
 	end
 
-	def item_params
-		params.require(:item).permit(:name,:price,:description,:weight,:real)
-	end
+	private
+
+		def item_params
+			params.require(:item).permit(:name,:price,:description,:weight,:real)
+		end
+
+		def find_item
+			@item = Item.where(id: params[:id]).first
+			render_404 unless @item 
+		end
+
+		def check_if_admin
+			render_403 unless params[:admin]
+		end
 
 end
