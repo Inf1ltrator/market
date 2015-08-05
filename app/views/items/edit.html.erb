@@ -1,10 +1,6 @@
 <h1>Edit item</h1>
-<%= form_for @item do |f| %>
-
-	<p>Цена: </br><%= f.text_field :price %></p>
-	<p>Название: </br><%= f.text_field :name %></p>
-	<p>Описание: </br><%= f.text_field :description %></p>
-	<p>Вес: </br><%= f.text_field :weight %></p>
-
-	<p><%= f.submit "Редактировать товар" %>  </p>
+<%= form_for @item, :html => {:multipart => true} do |f| %>
+  <%= render partial: "form", locals: {f: f}%>
+  <%= render partial: "shared/iupload"%>
+  <p><%= f.submit "Редактировать товар" %>  </p>
 <%end%>

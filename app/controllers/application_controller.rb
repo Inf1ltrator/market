@@ -18,4 +18,22 @@ class ApplicationController < ActionController::Base
 		render file: "public/404.html", status: 404
 	end
 
+	def store_image
+		if params[:file]
+		  @image = Image.new(file: params[:file])
+		  @image.save
+		else
+			@image = Image.new
+			@image.save
+		end
+
+	end
+
+	def update_image imageable_id
+		if params[:file]
+		  @image = Image.find_by_imageable_id(imageable_id)
+		  @image.update_attributes(file: params[:file])
+		end
+	end
+
 end

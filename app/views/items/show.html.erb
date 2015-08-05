@@ -2,6 +2,7 @@
 
 <ul>
 	<li><%= @item.price %></li>
-	<li><%= @item.description %></h1>
+	<li><%= @item.description%></h1>
 	<li><%= @item.weight %></li>
+<li><%= image_tag @item.image.file_url.to_s %></li>
 </ul>
