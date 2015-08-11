@@ -1,10 +1,9 @@
-<p>Цена: </br><%= f.text_field :price %></p>
-<p>Название: </br><%= f.text_field :name %></p>
-<p>Описание: </br><%= f.text_field :description %></p>
-<p>Вес: </br><%= f.text_field :weight %></p>
-
-
-
-
-
-
+<div class="container" id="form_container">
+  <p><%= f.input :price , :lable => "Цена"%></p>
+  <p><%= f.input :name %></p>
+  <p><%= f.input :description, as: :text %></p>
+  <p><%= f.input :weight %></p>
+  <p><label for="exampleInputFile">Картинка</label></p>
+  <p><%= file_field @image, :file%></p>
+  <p><%= f.submit %>  </p>
+</div>

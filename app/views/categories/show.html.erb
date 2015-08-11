@@ -1,0 +1,22 @@
+<div class="container-fluid" id="center_table">
+   <ul class="list-group">
+   <% @category.items.each do |i| %>
+    <li class="list-group-item">
+      <div class="media">
+        <div class="media-left">
+          <a href="<%=category_item_path(@category,i)%>">
+           <%= image_tag i.image.file_url(:thumb).to_s if i.image!=nil%>
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%=i.name%></h4>
+          <%=i.description%>
+           <p><a href="#" class="btn btn-primary" role="button">В корзину!</a> <a href="<%=category_item_path(@category,i)%>" class="btn btn-default" role="button">Подробнее</a></p>
+            <%=link_to "Удалить", category_item_path(@category,i), method: :delete, data: {confirm: "Точно удалить?"} %>
+        </div>
+      </div>
+    </li>
+  <%end%>
+  </ul>
+   <a href="<%= new_category_item_path(@category)%>" class="btn btn-primary" role="button" style="float:right; margin-bottom: 1em;">Добавить товар</a>
+</div>

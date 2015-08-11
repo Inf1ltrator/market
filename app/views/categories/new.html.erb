@@ -1,0 +1,9 @@
+<div class="container", id="item_container">
+  <h2>Create new category</h2>
+  <%= simple_form_for @category, :html => {:multipart => true} do |f| %>
+    <%= render partial: "form", locals: {f: f}%>
+  <%end%>
+</div>
+
+
+

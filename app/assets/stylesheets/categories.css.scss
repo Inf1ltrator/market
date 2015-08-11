@@ -1,0 +1,37 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#form_container{
+  height: 40%;
+  width: 40%;
+  margin: 0;
+  position: center;
+  background-color: orange;
+}
+
+#center_table{
+  height: 70%;
+  width: 70%;
+  float: left;
+
+}
+
+#left_panel{
+  height: 100%;
+  width: 13%;
+  float:left;
+  .btn-group-vertical{
+    width: 100%;
+  }
+}
+
+#right_panel{
+  height: auto;
+  width: 17%;
+  float:right;
+
+}
+
+.row{
+}

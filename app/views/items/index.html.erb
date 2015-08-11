@@ -1,26 +1,61 @@
-<h1>Items</h1>
+ 
+  
+  <!--
+    <div class="row" id="center_table">
+  <#% @items.each do |i| %>
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <#%= image_tag i.image.file_url(:thumb).to_s if i.image!=nil%>
+          <div class="caption">
+            <h3><#%=i.name%></h3>
+            <p><#%=i.description%></p>
+            <h4>Цена: <#%=i.price%>р.</h4>
+            <p><a href="#" class="btn btn-primary" role="button">В корзину!</a> <a href="<#%=item_path(i)%>" class="btn btn-default" role="button">Подробнее</a></p>
+            <#%=link_to "Удалить", i, method: :delete, data: {confirm: "Точно удалить?"} %>
+          </div>
+        </div>
+      </div>
+  <#%end%>
+  </div>
 
-<% if @items.empty? %>
-	<b>No items in store</b>
-<% else %>
-<table>
-	<tr>
-		<th>Id</th>
-		<th>Name</th>
-		<th>Price</th>
-		<th></th>
-		<th></th>
-	</tr>
 
-	<% @items.each do |i| %>
 
-		<tr>
-			<td><%= i.id %></td>
-			<td><%= link_to i.name, item_path(i) %></td>
-			<td><%= i.price %></td>
-			<td>Рейтинг: <%= i.votes_count %>,<%= link_to "+", upvote_item_path(i)%></td>
-			<td><%=link_to "Удалить", i, method: :delete, data: {confirm: "Точно удалить?"} %></td>
-		</tr>
-	<% end %>
-</table>
-<%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1>Items</h1>
+
+  <%# if @items.empty? %>
+  	<b>No items in store</b>
+  <%# else %>
+  <table class="table table-striped">
+  	<tr>
+  		<th>Id</th>
+  		<th>Name</th>
+  		<th>Price</th>
+  		<th></th>
+  		<th></th>
+  	</tr>
+
+  	<%# @items.each do |i| %>
+
+  		<tr>
+  			<td><%#= i.id %></td>
+  			<td><%#= link_to i.name, item_path(i) %></td>
+  			<td><%#= i.price %></td>
+  			<td>Рейтинг: <%#= i.votes_count %>,<%#= link_to "+", upvote_item_path(i)%></td>
+  			<td><%#=link_to "Удалить", i, method: :delete, data: {confirm: "Точно удалить?"} %></td>
+  		</tr>
+  	<%# end %>
+  </table>
+  <%#end%>-->

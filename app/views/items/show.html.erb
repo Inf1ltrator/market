@@ -1,8 +1,7 @@
 <h1> <%= @item.name %> </h1>
-
 <ul>
 	<li><%= @item.price %></li>
 	<li><%= @item.description%></h1>
 	<li><%= @item.weight %></li>
-<li><%= image_tag @item.image.file_url.to_s %></li>
+<li><%= image_tag @item.image.file.url(:thumb) %></li>
 </ul>

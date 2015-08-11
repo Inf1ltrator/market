@@ -1,24 +1,24 @@
 class ItemsController < ApplicationController
 
-	before_filter :find_item,      only:[:show, :edit, :update, :destroy, :upvote]
-	#before_filter :check_if_admin, only:[:edit, :update, :create, :new, :delete]
+
+	before_filter :load_category
+  before_filter :find_item,      only:[:show, :edit, :update, :destroy, :upvote]
 
 	def index
-		@items = Item
-		@items = @items.where("price >= ?", params[:price_from]) if params[:price_from]
-		@items = @items.where("created_at >= ?", 1.day.ago) if params[:today]
-		@items = @items.order("votes_count DESC", "price")
+		@items = @category.items.all
 	end
 	# /items/id GET
 	def show
 		unless @item 
 			render text: "Page not found", status: 404
+      render layout: "admin"
 		end
 	end
 
 	# /items/new GET
 	def new
-		@item = Item.new
+    @item = @category.items.build
+    render layout: "admin"
 	end
 
 	# /items/id/edit GET
@@ -26,17 +26,17 @@ class ItemsController < ApplicationController
 	end
 
 	def expensive
-		@items = Item.where("price > 1000")
+		@items = @category.items.where("price > 1000")
 		render "index"
 	end
 
 	# /items POST
 	def create
-		@item = Item.create(item_params)
+		@item = @category.items.create(item_params)
 		if @item.errors.empty?
 			store_image
 			@item.image = @image
-			redirect_to item_path(@item)
+			redirect_to [@category,@item]
 		else
 			render "new"
 		end
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
 		@item.update_attributes(item_params)
 		if @item.errors.empty?
 			update_image(@item.id)
-			redirect_to item_path(@item)
+			redirect_to [@category,@item]
 		else
 			render "edit"
 		end
@@ -71,8 +71,12 @@ class ItemsController < ApplicationController
 		end
 
 		def find_item
-			@item = Item.where(id: params[:id]).first
+			@item = @category.items.find_by(params[:id])
 			render_404 unless @item 
 		end
+
+    def load_category
+      @category = Category.find(params[:category_id])
+    end
 
 end

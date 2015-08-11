@@ -1,6 +1,6 @@
-<h1>Edit item</h1>
-<%= form_for @item, :html => {:multipart => true} do |f| %>
-  <%= render partial: "form", locals: {f: f}%>
-  <%= render partial: "shared/iupload"%>
-  <p><%= f.submit "Редактировать товар" %>  </p>
-<%end%>
+<div class="container", id="item_container">
+  <h2>Edit item</h2>
+  <%= simple_form_for([@category,@item]), :html => {:multipart => true} do |f| %>
+    <%= render partial: "form", locals: {f: f}%>
+  <%end%>
+</div>
