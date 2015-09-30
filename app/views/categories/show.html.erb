@@ -1,4 +1,4 @@
-<div class="container-fluid" id="center_table">
+<div class="col-md-6" id="center_table">
    <ul class="list-group">
    <% @category.items.each do |i| %>
     <li class="list-group-item">
@@ -11,7 +11,7 @@
         <div class="media-body">
           <h4 class="media-heading"><%=i.name%></h4>
           <%=i.description%>
-           <p><a href="#" class="btn btn-primary" role="button">В корзину!</a> <a href="<%=category_item_path(@category,i)%>" class="btn btn-default" role="button">Подробнее</a></p>
+           <p><a href="<%= create_position_category_item_path(@category,i)%>" class="btn btn-primary" role="button">В корзину!</a> <a href="<%=category_item_path(@category,i)%>" class="btn btn-default" role="button">Подробнее</a></p>
             <%=link_to "Удалить", category_item_path(@category,i), method: :delete, data: {confirm: "Точно удалить?"} %>
         </div>
       </div>

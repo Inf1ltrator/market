@@ -1,0 +1,20 @@
+<div class="container-fluid" id="center_table">
+   <ul class="list-group">
+   <% @cart.positions.each do |p| %>
+    <%item = Item.find_by_id(p.item_id)%>
+    <li class="list-group-item">
+      <div class="media">
+        <div class="media-left">
+          <a href="<%=category_item_path(item.category_id,item)%>">
+           <%= image_tag item.image.file_url(:thumb).to_s if item.image!=nil%>
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%=item.name%></h4>
+          <%=item.description%>
+        </div>
+      </div>
+    </li>
+  <%end%>
+  </ul>
+</div>

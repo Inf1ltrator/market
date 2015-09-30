@@ -1,0 +1,10 @@
+<div class="panel panel-default text-center">
+  <div class="panel-body text-left">Категории:</div>
+    <div class="btn-group-vertical">
+    <p><a href="<%=new_category_path%>" style="margin-left: 1em;">Создать Категорию</a></p>
+      <% Category.all.each do |c| %>
+        <a href="<%= category_path(c)%>" class="btn btn-primary " role="button"><%=c.name%></a>
+      <%end%>
+    </div>
+</div>
+ 

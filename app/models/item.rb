@@ -9,9 +9,15 @@ class Item < ActiveRecord::Base
 	has_many :comments, as: :commentable
 	has_one :image, as: :imageable
 	after_initialize{}
-	after_save{}
+	after_save{
+    self.image = Image.create()
+  }
 	#after_create{ category.inc(:items_count,1) }
 	after_update{}
 	#after_destroy{ category.inc(:items_count,-1) }
+  before_destroy{
+    self.image.destroy
+  }
+  
 end
 

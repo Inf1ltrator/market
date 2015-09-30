@@ -6,31 +6,27 @@
   height: 40%;
   width: 40%;
   margin: 0;
-  position: center;
   background-color: orange;
 }
 
 #center_table{
-  height: 70%;
-  width: 70%;
-  float: left;
+
 
 }
 
-#left_panel{
-  height: 100%;
-  width: 13%;
-  float:left;
+.panel-default{
+
   .btn-group-vertical{
-    width: 100%;
+    width: 75%;
+    margin-bottom: 1em;
+    .btn{
+      margin-bottom: 4px;
+    }
   }
 }
 
 #right_panel{
-  height: auto;
-  width: 17%;
-  float:right;
-
+  
 }
 
 .row{

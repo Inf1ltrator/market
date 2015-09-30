@@ -12,6 +12,8 @@ gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'bcrypt'
+gem 'devise'
 gem 'sdoc',                 '0.4.0', group: :doc
 
 group :development, :test do

@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
 
 	before_filter :load_category
-  before_filter :find_item,      only:[:show, :edit, :update, :destroy, :upvote]
+  before_filter :find_item,      only:[:show, :edit, :update, :destroy, :upvote, :create_position]
 
 	def index
 		@items = @category.items.all
@@ -32,10 +32,9 @@ class ItemsController < ApplicationController
 
 	# /items POST
 	def create
-		@item = @category.items.create(item_params)
-		if @item.errors.empty?
-			store_image
-			@item.image = @image
+		@item = @category.items.new(item_params)
+		if @item.save
+			@item.image.update_attributes(file: params[:file])
 			redirect_to [@category,@item]
 		else
 			render "new"
@@ -58,10 +57,17 @@ class ItemsController < ApplicationController
 		redirect_to action: :index
 	end
 
+  def create_position
+    @position = Position.create()
+    @item.positions << @position
+    current_user.cart.positions << @position
+    redirect_to [@category,@item]
+  end
+
 	# /items/id DELETE
 	def destroy
 		@item.destroy
-		redirect_to action: "index"
+		redirect_to @category
 	end
 
 	private

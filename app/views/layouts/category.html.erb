@@ -9,10 +9,17 @@
 </head>
 <body body class='<%= controller.controller_name %>'>
 
-  <%= render partial: 'categories/leftbody'%>
-  <%= render partial: 'categories/rightbody'%>
+<div class="col-md-3">
+  <%= render partial: 'categories/catbuttons'%>
+  <%= render partial: 'categories/cart'%>
+</div>
 
   <%= yield %>
 
+  <%= render partial: 'categories/sort'%>
+
+
+ 
+  
 </body>
 </html>

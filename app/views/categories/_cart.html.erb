@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    Корзина:
+    <p><%= link_to "Корзина", cart_path(current_user.cart) if current_user != nil %></p>
+  </div>
+</div>
+
+
+ 

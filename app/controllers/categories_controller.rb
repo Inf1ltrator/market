@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
   # /items POST
   def create
     @category = Category.create(category_params)
-    if @item.errors.empty?
+    if @category.errors.empty?
       redirect_to category_path(@category)
     else
       render "new"
